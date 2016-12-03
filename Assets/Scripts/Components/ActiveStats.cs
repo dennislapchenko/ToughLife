@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ToughLife.Components
 {
-    public class ActiveStats : MonoBehaviour
+    public class ActiveStats : AcidBehaviour
     {
         public Root root;
 
@@ -17,9 +17,7 @@ namespace ToughLife.Components
 
         void Awake()
         {
-            health = new Health(this);
-            movement = new Movement(this);
-            abilities = new Abilities(this);
+
         }
 
         public void die()
@@ -27,17 +25,13 @@ namespace ToughLife.Components
             root.sceneController.loadScene(GameScene.GAMEOVER);
         }
 
-        public void setRoot(Root root)
+
+        public override void Life(Root root)
         {
             this.root = root;
+            health = new Health(this);
+            movement = new Movement(this);
+            abilities = new Abilities(this);
         }
-
-
-
-
-
-
-
-
     }
 }

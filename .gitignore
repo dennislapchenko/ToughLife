@@ -24,6 +24,8 @@ obj/
 *.iml
 *.name
 *.asset
+*.dll
+*.pdb
 
 # ============ #
 # OS generated #
@@ -35,3 +37,9 @@ obj/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+
+# Builds
+*.mdb
+*.aspx
+/Builds/*

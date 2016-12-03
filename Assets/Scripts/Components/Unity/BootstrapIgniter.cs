@@ -15,7 +15,7 @@ namespace ToughLife.Components.Unity
         private IEnumerator sleepAndLoad()
         {
             //display and awesome splashscreen
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2.2f);
             root.sceneController.loadScene(GameScene.MAINMENU);
             Destroy(this.gameObject);
 

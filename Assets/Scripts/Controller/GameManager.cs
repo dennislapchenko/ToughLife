@@ -21,10 +21,16 @@ namespace ToughLife.Controller
 
 	    private bool sessionRunning = false;
 
+	    private float scoreMultiplier = 2.0f;
+
 	    void Awake()
 	    {
             gameSceneGUI = new Dictionary<GameScene, GameObject>();
 	        GOUtil.inst("Prefabs/EventSystem").transform.SetParent(this.transform);
+	    }
+
+	    public void Start()
+	    {
 	    }
 
 	    public void Update()
@@ -42,7 +48,7 @@ namespace ToughLife.Controller
 
 	    public void updateScore()
 	    {
-	        score += Time.deltaTime * 2f;
+	        score += Time.deltaTime * scoreMultiplier;
 	        scoreText.text = Mathf.RoundToInt(score).ToString();
 	    }
 
@@ -55,6 +61,15 @@ namespace ToughLife.Controller
 		{
 			return "GameManager";
 		}
+
+	    private IEnumerator hardener()
+	    {
+	        while (true)
+	        {
+	            checkToAddMoreObstacles();
+	            yield return new WaitForSeconds(5);
+	        }
+	    }
 
 
 	    public void setRoot(Root root)
@@ -75,15 +90,37 @@ namespace ToughLife.Controller
 	        }
 	    }
 
+	    private void checkToAddMoreObstacles()
+	    {
+	        if (score > 25)
+	        {
+	            if (Random.value < 0.35f)
+	            {
+	                DBG.log("requesting new obstacle to be spawned!");
+	                DebugUtil.verifyNotNull(root, "root");
+	                DebugUtil.verifyNotNull(root.obstacleManager, "root.obstacleManager");
+	                if(root.obstacleManager != null) root.obstacleManager.spawnObstacle();
+	            }
+	        }
+	        if ((score % 500) < 30)
+	        {
+	            scoreMultiplier += 0.2f;
+	        }
+	    }
+
 	    public void sessionScene()
 	    {
 	        destroyGUIifExists(GameScene.GAMEOVER);
 	        destroyGUIifExists(GameScene.MAINMENU);
 	        sessionRunning = true;
+	        score = 0;
+	        scoreMultiplier = 2.0f;
 	        GameObject sessionUI = Instantiate(Resources.Load("Prefabs/SessionUI"), Vector3.one, Quaternion.identity) as GameObject;
 	        sessionUI.transform.SetParent(this.gameObject.transform);
 	        scoreText = sessionUI.GetComponentInChildren<Text>();
 	        gameSceneGUI.Add(GameScene.SESSION, sessionUI);
+
+	        StartCoroutine(hardener());
 	    }
 
 	    public void gameOverScene()

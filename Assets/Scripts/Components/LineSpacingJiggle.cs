@@ -34,7 +34,7 @@ public class LineSpacingJiggle : MonoBehaviour
     {
         Time.timeScale = TimeScale;
 
-        float value = Mathf.Sin(Time.time);
+        float value = Mathf.Sin(-Time.time);
         //DBG.log("spacing sin value: " + value);
         return value;
     }

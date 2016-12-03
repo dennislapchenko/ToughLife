@@ -52,13 +52,13 @@ namespace ToughLife.Controller
 		private void playerBuild(int healthPoints)
 		{
 			player = Instantiate(Resources.Load("Prefabs/Player"), Vector3.zero, Quaternion.identity) as GameObject;
-			activeStats = player.GetComponent<ActiveStats>();
-			activeStats.health.maxHealth = healthPoints;
-			activeStats.health.currentHealth = healthPoints;
-			activeStats.movement.speed = 3.0f;
+		    activeStats = player.GetComponent<ActiveStats>();
+		    activeStats.Life(root);
+		    activeStats.health.maxHealth = healthPoints;
+		    activeStats.health.currentHealth = healthPoints;
+		    activeStats.movement.speed = 5f;
 		    activeStats.owner = StatsOwnerType.PLAYER;
 		    DebugUtil.verifyNotNull(root, "root in playerBuild()");
-		    activeStats.setRoot(root);
 
 		    player.transform.SetParent(this.transform);
 		}

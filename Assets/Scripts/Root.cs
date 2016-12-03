@@ -17,7 +17,7 @@ namespace ToughLife
 		public GameManager gameManager;
 		public ObstacleManager obstacleManager;
 	    public SceneController sceneController;
-		private EnvironmentManager environmentManager;
+		public EnvironmentController environmentController;
 		private AudioManager audioManager;
 		private DataPersistance dataPersistance;
 
@@ -26,17 +26,13 @@ namespace ToughLife
 
 		void Awake()
 		{
-		    GameObject.DontDestroyOnLoad(this);
+		    DontDestroyOnLoad(this);
 
 		    instantiatedManagers = new List<GameObject>();
 
-		    GameObject sc = new GameObject("SceneController");
-		    sceneController = sc.AddComponent<SceneController>();
-		    sceneController.setRoot(this);
-		    sc.transform.SetParent(this.gameObject.transform);
-
+		    loadSceneController();
 		    loadGameManager();
-
+		    loadEnvironmentManager();
 		}
 
 	    public void loadManagersForScene(GameScene scene)
@@ -55,6 +51,22 @@ namespace ToughLife
 	                default:
 	                break;
 	        }
+	    }
+
+	    private void loadSceneController()
+	    {
+	        GameObject sc = new GameObject("SceneController");
+	        sceneController = sc.AddComponent<SceneController>();
+	        sceneController.setRoot(this);
+	        sc.transform.SetParent(this.gameObject.transform);
+	    }
+
+	    private void loadEnvironmentManager()
+	    {
+	        GameObject ec = new GameObject("Environment Manager");
+	        environmentController = ec.AddComponent<EnvironmentController>();
+	        environmentController.Life(this);
+	        ec.transform.SetParent(this.gameObject.transform);
 	    }
 
 	    private void loadPlayerManager()
@@ -104,9 +116,8 @@ namespace ToughLife
 		    booter.GetComponent<BootstrapIgniter>().Life(this);
 		}
 
-		void Update()
-		{
-
-		}
+	    void Update()
+	    {
+	    }
 	}
 }

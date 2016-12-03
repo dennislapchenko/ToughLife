@@ -1,4 +1,5 @@
-﻿using ToughLife.Util;
+﻿using System.Xml.Schema;
+using ToughLife.Util;
 using UnityEngine;
 
 namespace ToughLife.Components
@@ -15,6 +16,14 @@ namespace ToughLife.Components
         private int direction = -1;
 
         private bool changingColumns = false;
+
+        public void setBounds(float xMax, float xMin, float yMax, float yMin)
+        {
+            verticalMax = yMax;
+            verticalMin = yMin;
+            leftMax = xMin;
+            rightMax = xMax;
+        }
 
         void Awake()
         {
@@ -42,7 +51,7 @@ namespace ToughLife.Components
                     doHorizontalCycle();
                     return;
                 }
-                currentValue += Time.deltaTime * direction * activeStats.movement.speed;
+                currentValue += Time.unscaledDeltaTime * direction * activeStats.movement.speed;
                     // or however you are incrementing the position
                 if (currentValue >= verticalMax)
                 {
