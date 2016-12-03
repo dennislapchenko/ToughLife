@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using ToughLife.Enums;
 using ToughLife.Interfaces;
+using ToughLife.Util;
 using UnityEngine.UI;
 
 namespace ToughLife.Controller
@@ -23,6 +24,7 @@ namespace ToughLife.Controller
 	    void Awake()
 	    {
             gameSceneGUI = new Dictionary<GameScene, GameObject>();
+	        GOUtil.inst("Prefabs/EventSystem").transform.SetParent(this.transform);
 	    }
 
 	    public void Update()
@@ -60,12 +62,23 @@ namespace ToughLife.Controller
 	        this.root = root;
 	    }
 
-
+	    public Root getRoot()
+	    {
+	        return this.root;
+	    }
+	    private void destroyGUIifExists(GameScene scene)
+	    {
+	        if (gameSceneGUI.ContainsKey(scene))
+	        {
+	            Destroy(gameSceneGUI[scene]);
+	            gameSceneGUI.Remove(scene);
+	        }
+	    }
 
 	    public void sessionScene()
 	    {
-	        Destroy(gameSceneGUI[GameScene.GAMEOVER]);
-	        Destroy(gameSceneGUI[GameScene.MAINMENU]);
+	        destroyGUIifExists(GameScene.GAMEOVER);
+	        destroyGUIifExists(GameScene.MAINMENU);
 	        sessionRunning = true;
 	        GameObject sessionUI = Instantiate(Resources.Load("Prefabs/SessionUI"), Vector3.one, Quaternion.identity) as GameObject;
 	        sessionUI.transform.SetParent(this.gameObject.transform);
@@ -76,7 +89,8 @@ namespace ToughLife.Controller
 	    public void gameOverScene()
 	    {
 
-	        Destroy(gameSceneGUI[GameScene.SESSION]);
+	        sessionRunning = false;
+	        destroyGUIifExists(GameScene.SESSION);
 	        GameObject gameOverUI = Instantiate(Resources.Load("Prefabs/GameOverUI"), Vector3.one, Quaternion.identity) as GameObject;
 	        gameOverUI.transform.SetParent(this.gameObject.transform);
 	        gameOverUI.GetComponent<GameOverUI>().setFinalScore(root.gameManager.getScore());
@@ -85,8 +99,8 @@ namespace ToughLife.Controller
 
 	    public void mainScene()
 	    {
-	        Destroy(gameSceneGUI[GameScene.BOOTSTRAP]);
-	        GameObject mainMenuGUI = Instantiate(Resources.Load("Prefabs/MainMenuGUI"), Vector3.one, Quaternion.identity) as GameObject;
+	        destroyGUIifExists(GameScene.BOOTSTRAP);
+	        GameObject mainMenuGUI = Instantiate(Resources.Load("Prefabs/MainGUI"), Vector3.one, Quaternion.identity) as GameObject;
 	        mainMenuGUI.transform.SetParent(this.gameObject.transform);
 	        gameSceneGUI.Add(GameScene.MAINMENU, mainMenuGUI);
 	    }

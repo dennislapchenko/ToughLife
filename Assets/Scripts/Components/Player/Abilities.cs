@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ToughLife.Components.Player
 {
-    public class Abilities : MonoBehaviour
+    public class Abilities
     {
         private ActiveStats ownerStats;
 
@@ -20,17 +20,17 @@ namespace ToughLife.Components.Player
             return shieldActive;
         }
 
-        private IEnumerator activate(float ms)
-        {
-            shieldActive = true;
-            yield return new WaitForSeconds(ms/1000);
-            shieldActive = false;
-        }
-
-        public void activateShield(float ms)
-        {
-            StartCoroutine(activate(ms));
-        }
+//        private IEnumerator activate(float ms)
+//        {
+//            shieldActive = true;
+//            yield return new WaitForSeconds(ms/1000);
+//            shieldActive = false;
+//        }
+//
+//        public void activateShield(float ms)
+//        {
+//            StartCoroutine(activate(ms));
+//        }
 
 
     }

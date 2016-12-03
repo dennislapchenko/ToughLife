@@ -24,7 +24,7 @@ namespace ToughLife.Components
 
         public void die()
         {
-            root.sceneController.loadScene(SceneController.GAMEOVER_SCENE);
+            root.sceneController.loadScene(GameScene.GAMEOVER);
         }
 
         public void setRoot(Root root)

@@ -1,4 +1,5 @@
 ﻿using ToughLife;
+using ToughLife.Enums;
 using ToughLife.Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,31 +27,33 @@ namespace ToughLife.Controller
 
         void Awake()
         {
-            if (SceneManager.GetActiveScene().name.Equals("GameOver"))
-            {
-
-            }
 
         }
 
-        public void loadScene(string name)
+        public void loadScene(GameScene scene)
         {
-            SceneManager.LoadScene(name);
-            switch(SceneManager.GetActiveScene().name)
+            string sceneToLoad = "";
+            switch(scene)
             {
-                case(BOOTSTRAP_SCENE):
+                case(GameScene.BOOTSTRAP):
                     //is loaded initially
+                    sceneToLoad = BOOTSTRAP_SCENE;
                     break;
-                case(MAINMENU_SCENE):
+                case(GameScene.MAINMENU):
+                    sceneToLoad = MAINMENU_SCENE;
                     root.gameManager.mainScene();
                     break;
-                case(SESSION_SCENE):
+                case(GameScene.SESSION):
+                    sceneToLoad = SESSION_SCENE;
                     root.gameManager.sessionScene();
                     break;
-                case(GAMEOVER_SCENE):
+                case(GameScene.GAMEOVER):
+                    sceneToLoad = GAMEOVER_SCENE;
                     root.gameManager.gameOverScene();
                     break;
             }
+            SceneManager.LoadScene(sceneToLoad);
+            root.loadManagersForScene(scene);
         }
     }
 }

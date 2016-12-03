@@ -12,7 +12,6 @@ namespace ToughLife.Controller
 	    private Root root;
 
 		public GameObject player;
-		public PlayerStates currentState;
 		public ActiveStats activeStats;
 
 		public string getTag () { return "PlayerManager"; }
@@ -22,13 +21,6 @@ namespace ToughLife.Controller
 	        this.root = root;
 	        initiate();
 	    }
-
-	    public enum PlayerStates
-		{
-			Active,
-			Dead,
-			Inactive
-		}
 
 		void Awake()
 		{
@@ -63,7 +55,7 @@ namespace ToughLife.Controller
 			activeStats = player.GetComponent<ActiveStats>();
 			activeStats.health.maxHealth = healthPoints;
 			activeStats.health.currentHealth = healthPoints;
-			activeStats.movement.speed = 5.0f;
+			activeStats.movement.speed = 3.0f;
 		    activeStats.owner = StatsOwnerType.PLAYER;
 		    DebugUtil.verifyNotNull(root, "root in playerBuild()");
 		    activeStats.setRoot(root);

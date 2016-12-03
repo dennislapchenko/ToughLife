@@ -13,6 +13,6 @@ public class MoveInput : MonoBehaviour {
 	
 	void Update () {
 		if (activeStats != null && !activeStats.movement.rooted)
-			this.gameObject.transform.Translate(activeStats.movement.speed * Time.deltaTime  * 1.3f * Input.GetAxis("Horizontal"), 0, 0);
+			this.gameObject.transform.Translate(activeStats.movement.speed * Time.deltaTime * Input.GetAxis("Horizontal"), 0, 0);
 	}
 }
