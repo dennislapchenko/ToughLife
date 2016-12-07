@@ -57,7 +57,7 @@ namespace ToughLife.Components
                 {
                     direction *= -1;
                     currentValue = verticalMax;
-                    if (Random.value < 0.70f)
+                    if (Random.value < 0.50f)
                     {
                         changingColumns = true;
                         currentValue = transform.localPosition.x;

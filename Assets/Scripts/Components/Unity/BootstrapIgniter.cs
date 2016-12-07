@@ -12,15 +12,6 @@ namespace ToughLife.Components.Unity
 
         private GameObject splashObject;
 
-        private IEnumerator sleepAndLoad()
-        {
-            //display and awesome splashscreen
-            yield return new WaitForSeconds(2.2f);
-            root.sceneController.loadScene(GameScene.MAINMENU);
-            Destroy(this.gameObject);
-
-        }
-
         public override void Life(Root root)
         {
             this.root = root;
@@ -28,6 +19,15 @@ namespace ToughLife.Components.Unity
             splashObject = GOUtil.inst("Prefabs/BootstrapGUI");
             splashObject.transform.SetParent(this.transform);
             StartCoroutine(sleepAndLoad());
+        }
+
+        private IEnumerator sleepAndLoad()
+        {
+            //display and awesome splashscreen
+            yield return new WaitForSeconds(2.2f);
+            root.sceneController.loadScene(GameScene.MAINMENU);
+            Destroy(this.gameObject);
+
         }
     }
 
