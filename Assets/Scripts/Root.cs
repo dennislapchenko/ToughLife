@@ -33,7 +33,15 @@ namespace ToughLife
 		    loadSceneController();
 		    loadGameManager();
 		    loadEnvironmentManager();
+			var managers = new List<PlayerManager>();
 		}
+
+	    void Start()
+	    {
+	        GameObject booter = Instantiate(Resources.Load("Prefabs/Unity/sleepAwake")) as GameObject;
+	        booter.transform.SetParent(this.transform);
+	        booter.GetComponent<BootstrapIgniter>().Life(this);
+	    }
 
 	    public void loadManagersForScene(GameScene scene)
 	    {
@@ -46,7 +54,7 @@ namespace ToughLife
 	                loadPlayerManager();
 	                loadObstacleManager();
 	                break;
-	                case(GameScene.GAMEOVER):
+                case(GameScene.GAMEOVER):
 	                break;
 	                default:
 	                break;
@@ -109,12 +117,7 @@ namespace ToughLife
 	    }
 
 
-		void Start()
-		{
-		    GameObject booter = Instantiate(Resources.Load("Prefabs/Unity/sleepAwake")) as GameObject;
-		    booter.transform.SetParent(this.transform);
-		    booter.GetComponent<BootstrapIgniter>().Life(this);
-		}
+
 
 	    void Update()
 	    {
