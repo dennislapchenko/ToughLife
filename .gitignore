@@ -23,7 +23,7 @@ obj/
 *.xml
 *.iml
 *.name
-*.asset
+#*.asset
 *.dll
 *.pdb
 
