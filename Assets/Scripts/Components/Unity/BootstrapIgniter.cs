@@ -1,33 +1,28 @@
 ﻿using System.Collections;
 using ToughLife.Enums;
-using ToughLife.Util;
+using Zenject;
 using UnityEngine;
 
-namespace ToughLife.Components.Unity
+namespace ToughLife
 {
-    public class BootstrapIgniter : AcidBehaviour
+	public class BootstrapIgniter : MonoBehaviour
     {
+		GameSceneSignal _sceneSignal;
 
-        private const GameScene sceneToLoad = GameScene.MAINMENU;
-
-        private GameObject splashObject;
-
-        public override void Life(Root root)
+		[Inject]
+		public void Construct(GameSceneSignal sceneSignal)
         {
-            this.root = root;
-            Debug.Log("Starting coroutine bootstrap igniter");
-            splashObject = GOUtil.inst("Prefabs/BootstrapGUI");
-            splashObject.transform.SetParent(this.transform);
+			_sceneSignal = sceneSignal;
             StartCoroutine(sleepAndLoad());
         }
+
 
         private IEnumerator sleepAndLoad()
         {
             //display and awesome splashscreen
             yield return new WaitForSeconds(2.2f);
-            root.sceneController.loadScene(GameScene.MAINMENU);
-            Destroy(this.gameObject);
-
+			Debug.Log("firing off main scene signal");
+			_sceneSignal.Fire("pipisjka");
         }
     }
 

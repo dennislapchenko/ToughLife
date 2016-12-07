@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ToughLife.Components.Unity;
 using UnityEngine;
 using ToughLife.Controller;
 using ToughLife.Enums;
@@ -33,14 +32,13 @@ namespace ToughLife
 		    loadSceneController();
 		    loadGameManager();
 		    loadEnvironmentManager();
-			var managers = new List<PlayerManager>();
 		}
 
 	    void Start()
 	    {
-	        GameObject booter = Instantiate(Resources.Load("Prefabs/Unity/sleepAwake")) as GameObject;
-	        booter.transform.SetParent(this.transform);
-	        booter.GetComponent<BootstrapIgniter>().Life(this);
+//	        GameObject booter = Instantiate(Resources.Load("Prefabs/Unity/sleepAwake")) as GameObject;
+//	        booter.transform.SetParent(this.transform);
+//	        booter.GetComponent<BootstrapIgniter>().Life(this);
 	    }
 
 	    public void loadManagersForScene(GameScene scene)

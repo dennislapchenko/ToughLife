@@ -9,10 +9,9 @@ namespace ToughLife {
 		
 		public override void InstallBindings()
 		{
-			Container.BindSignal<GameStateSignals.Bootstrap>();
-			Container.BindSignal<GameStateSignals.Main>();
-			Container.BindSignal<GameStateSignals.Session>();
-			Container.BindSignal<GameStateSignals.Gameover>();
+			Container.BindSignal<GameSceneSignal>();
+
+			Container.Bind<SceneLoader>().To<SceneLoader>().FromGameObject().AsSingle().NonLazy();
 		}
 	}
 	
