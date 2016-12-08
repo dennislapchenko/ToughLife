@@ -38,12 +38,12 @@ namespace ToughLife.Controller
 
 		public void createObstacles()
 		{
-		    screen = root.environmentController.getScreenToWorld();
-		    obstacles = new List<GameObject>();
-		    for (int i = 0; i < obstacleAmount; i++)
-		    {
-		        StartCoroutine(newObstacle());
-		    }
+//		    screen = root.environmentController.getScreenToWorld();
+//		    obstacles = new List<GameObject>();
+//		    for (int i = 0; i < obstacleAmount; i++)
+//		    {
+//		        StartCoroutine(newObstacle());
+//		    }
 		}
 
 	    public IEnumerator newObstacle()

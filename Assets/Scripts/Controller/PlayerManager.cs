@@ -33,22 +33,6 @@ namespace ToughLife.Controller
 	    }
 
 
-		void LateUpdate()
-		{
-//			switch(currentState)
-//			{
-//				case(PlayerStates.Active):
-//					player.SetActive(true);
-//					break;
-//				case(PlayerStates.Dead):
-//					break;
-//				case(PlayerStates.Inactive):
-//					player.SetActive(false);
-//					break;
-//			}
-			
-		}
-
 		private void playerBuild(int healthPoints)
 		{
 			player = Instantiate(Resources.Load("Prefabs/Player"), Vector3.zero, Quaternion.identity) as GameObject;

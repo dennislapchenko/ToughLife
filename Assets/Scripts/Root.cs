@@ -70,8 +70,8 @@ namespace ToughLife
 	    private void loadEnvironmentManager()
 	    {
 	        GameObject ec = new GameObject("Environment Manager");
-	        environmentController = ec.AddComponent<EnvironmentController>();
-	        environmentController.Life(this);
+//	        environmentController = ec.AddComponent<EnvironmentController>();
+	        //environmentController.Life(this);
 	        ec.transform.SetParent(this.gameObject.transform);
 	    }
 

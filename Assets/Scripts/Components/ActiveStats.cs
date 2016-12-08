@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ToughLife.Components
 {
-    public class ActiveStats : AcidBehaviour
+    public class ActiveStats
     {
         public Root root;
 
@@ -26,7 +26,7 @@ namespace ToughLife.Components
         }
 
 
-        public override void Life(Root root)
+        public void Life(Root root)
         {
             this.root = root;
             health = new Health(this);
