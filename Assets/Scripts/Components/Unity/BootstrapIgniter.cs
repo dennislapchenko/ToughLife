@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ToughLife
 {
-	public class BootstrapIgniter : MonoBehaviour
+	public class BootstrapIgniter : SleepBehaviour
     {
 		GameSceneSignal _sceneSignal;
 
@@ -13,16 +13,16 @@ namespace ToughLife
 		public void Construct(GameSceneSignal sceneSignal)
         {
 			_sceneSignal = sceneSignal;
-            StartCoroutine(sleepAndLoad());
+			StartCoroutine(Coroutine());
         }
 
 
-        private IEnumerator sleepAndLoad()
+        protected override IEnumerator Coroutine()
         {
             //display and awesome splashscreen
-            yield return new WaitForSeconds(2.2f);
-			Debug.Log("firing off main scene signal");
-			_sceneSignal.Fire("pipisjka");
+            yield return new WaitForSeconds(6.2f);
+			Debug.Log("firing off scene signal");
+			_sceneSignal.Fire(GameSceneName.MAIN_SCENE);
         }
     }
 

@@ -13,6 +13,9 @@ namespace ToughLife
 		{
 			Container.Bind<BootstrapIgniter>().FromPrefab(_settings.SplashScreenPrefab).AsSingle();
 			Container.Bind<BootstrapHandler>().To<BootstrapHandler>().AsSingle().NonLazy();
+
+			//Container.Bind<ZenjectSceneLoader>().To<ZenjectSceneLoader>().AsSingle();
+			Container.Bind<SceneLoader>().To<SceneLoader>().FromGameObject().AsSingle().NonLazy();
 		}
 
 		[Serializable]	

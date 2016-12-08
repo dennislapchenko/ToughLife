@@ -11,7 +11,7 @@ namespace ToughLife {
 		{
 			Container.BindSignal<GameSceneSignal>();
 
-			Container.Bind<SceneLoader>().To<SceneLoader>().FromGameObject().AsSingle().NonLazy();
+
 		}
 	}
 	

@@ -9,10 +9,12 @@ namespace ToughLife
 	public class SceneLoader : MonoBehaviour
 	{
 		GameSceneSignal _sceneSignal;
+		ZenjectSceneLoader _sceneLoader;
 
 		[Inject]
-		public void Construct (GameSceneSignal sceneSignal)
+		public void Construct (ZenjectSceneLoader sceneLoader, GameSceneSignal sceneSignal)
 		{
+			_sceneLoader = sceneLoader;
 			_sceneSignal = sceneSignal;
 			_sceneSignal += GameScene;
 		}
@@ -20,6 +22,7 @@ namespace ToughLife
 		void GameScene(string sceneName)
 		{
 			Debug.Log("SCENE LOADINK = "+sceneName);
+			_sceneLoader.LoadScene(sceneName);
 		}
 	}
 }
