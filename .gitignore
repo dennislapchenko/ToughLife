@@ -18,12 +18,10 @@ obj/
 *.user
 *.unityproj
 *.booproj
-*.meta
-/*.meta
 *.xml
 *.iml
 *.name
-#*.asset
+
 *.dll
 *.pdb
 

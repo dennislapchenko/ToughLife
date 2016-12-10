@@ -6,7 +6,7 @@ using ToughLife.Controller;
 using ToughLife.Enums;
 using UnityEngine.SceneManagement;
 
-public class ButtonBinds
+public class ButtonBinds : MonoBehaviour
 {
 
 }

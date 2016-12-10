@@ -20,7 +20,7 @@ namespace ToughLife
         protected override IEnumerator Coroutine()
         {
             //display and awesome splashscreen
-            yield return new WaitForSeconds(6.2f);
+            yield return new WaitForSeconds(3f);
 			Debug.Log("firing off scene signal");
 			_sceneSignal.Fire(GameSceneName.MAIN_SCENE);
         }

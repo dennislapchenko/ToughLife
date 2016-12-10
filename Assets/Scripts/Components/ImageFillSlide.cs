@@ -17,7 +17,7 @@ namespace ToughLife.Components
 
         void Update ()
         {
-            parentComponent.fillAmount = Mathf.Lerp(parentComponent.fillAmount, 1, 0.1f);
+            parentComponent.fillAmount = Mathf.Lerp(parentComponent.fillAmount, 1, 0.07f);
         }
     }
 }
