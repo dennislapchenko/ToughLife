@@ -1,7 +1,5 @@
 # Tough Life
 
-![](https://github.com/dennislapchenko/ToughLife/blob/master/Assets/Resources/Images/splashscreen.jpg)
-
 ## Installation
 
 TODO: Describe the installation process
